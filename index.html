@@ -1,287 +1,1012 @@
 <!doctype html>
 <html lang="en" class="h-full">
-<head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>nityawrites.com | Where Stories Find Home</title>
-
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com/3.4.17"></script>
-
-<!-- Three JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Playfair+Display&family=Caveat&display=swap" rel="stylesheet">
-
-<style>
-
-/* ---------- SAME YOUR DESIGN ---------- */
-
-body{
-  margin:0;
-  font-family:'Cormorant Garamond',serif;
-  background:#1a1410;
-  color:#f5f0e6;
-  overflow-x:hidden;
-}
-
-.section{
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-  padding:4rem 2rem;
-  position:relative;
-  z-index:10;
-}
-
-/* Hero */
-
-.logo{
-  font-family:'Playfair Display',serif;
-  font-size:3rem;
-  color:#c9a55c;
-}
-
-.tagline{
-  font-family:'Caveat',cursive;
-  font-size:1.5rem;
-  color:#d4c5b0;
-}
-
-/* Buttons */
-
-.btn-primary{
-  padding:1rem 3rem;
-  border:1px solid #c9a55c;
-  color:#c9a55c;
-  background:transparent;
-  cursor:pointer;
-  transition:.3s;
-}
-
-.btn-primary:hover{
-  background:#c9a55c;
-  color:#1a1410;
-}
-
-/* Book Card */
-
-.book-card{
-  background:#2d2319;
-  padding:3rem;
-  max-width:600px;
-  text-align:center;
-}
-
-/* Author */
-
-.author-frame{
-  width:180px;
-  height:180px;
-  border-radius:50%;
-  overflow:hidden;
-  border:3px solid #c9a55c;
-}
-
-/* Form */
-
-.form-container{
-  width:100%;
-  max-width:700px;
-  background:#2d2319;
-  padding:2rem;
-}
-
-/* Footer */
-
-.footer{
-  text-align:center;
-  padding:2rem;
-  background:#1a1410;
-}
-
-</style>
-</head>
-
-<body>
-
-<!-- 3D Background -->
-<div id="canvas-container" style="position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;"></div>
-
-<!-- HERO -->
-<section class="section">
-
-<h1 class="logo">nityawrites.com</h1>
-<p class="tagline">Where stories find their way home...</p>
-
-<!-- BOOK IMAGE -->
-<div style="margin:3rem 0;">
-<img src="images/book-cover.jpg"
-style="width:220px;border-radius:10px;box-shadow:0 20px 40px rgba(0,0,0,.5);">
-</div>
-
-<button class="btn-primary" onclick="scrollToSection('book')">
-Enter the Store
-</button>
-
-</section>
-
-<!-- FEATURED BOOK -->
-<section class="section" id="book">
-
-<div class="book-card">
-
-<img src="images/book-cover.jpg"
-style="width:180px;margin-bottom:1.5rem;border-radius:8px;">
-
-<h2 style="font-family:Playfair Display;font-size:2rem;color:#c9a55c;">
-A Love Untold
-</h2>
-
-<p style="color:#d4c5b0;">
-A poetic journey through love, loss, and the beautiful chaos of finding yourself.
-</p>
-
-<div style="font-size:2rem;color:#c9a55c;margin:1rem 0;">
-₹299
-</div>
-
-<button class="btn-primary" onclick="scrollToSection('order')">
-Order Now
-</button>
-
-</div>
-</section>
-
-<!-- AUTHOR -->
-<section class="section">
-
-<div class="author-frame">
-<img src="images/author.jpg"
-style="width:100%;height:100%;object-fit:cover;">
-</div>
-
-<h2 style="font-family:Playfair Display;color:#c9a55c;margin-top:1rem;">
-Nitya Bhambhani
-</h2>
-
-<p style="max-width:500px;text-align:center;color:#d4c5b0;">
-A dreamer who found solace in words. Writing emotions that hearts feel but cannot speak.
-</p>
-
-</section>
-
-<!-- PAYMENT -->
-<section class="section">
-
-<h2 style="font-family:Playfair Display;color:#c9a55c;">
-Scan & Pay
-</h2>
-
-<div style="
-width:220px;height:220px;
-background:white;
-margin:2rem;
-display:flex;
-align-items:center;
-justify-content:center;">
-QR HERE
-</div>
-
-<p>UPI ID: nityabhambhani17@oksbi</p>
-
-<button class="btn-primary" onclick="scrollToSection('order')">
-Fill Order Form
-</button>
-
-</section>
-
-<!-- GOOGLE FORM -->
-<section class="section" id="order">
-
-<div class="form-container">
-
-<h2 style="font-family:Playfair Display;color:#c9a55c;text-align:center;">
-Order Form
-</h2>
-
-<!-- GOOGLE FORM EMBED -->
-<iframe
-src="https://docs.google.com/forms/d/e/YOUR_FORM_ID/viewform?embedded=true"
-width="100%"
-height="900"
-frameborder="0"
-marginheight="0"
-marginwidth="0">
-Loading…
-</iframe>
-
-</div>
-</section>
-
-<!-- FOOTER -->
-<footer class="footer">
-
-<h3 style="color:#c9a55c;">nityawrites.com</h3>
-<p style="color:#d4c5b0;">Crafting stories, one heart at a time</p>
-
-</footer>
-
-<!-- JS -->
-
-<script>
-
-function scrollToSection(id){
-document.getElementById(id).scrollIntoView({behavior:'smooth'});
-}
-
-/* THREE JS BG */
-
-const scene=new THREE.Scene();
-const camera=new THREE.PerspectiveCamera(75,window.innerWidth/window.innerHeight,.1,1000);
-const renderer=new THREE.WebGLRenderer({alpha:true});
-
-renderer.setSize(window.innerWidth,window.innerHeight);
-document.getElementById("canvas-container").appendChild(renderer.domElement);
-
-const geometry=new THREE.BufferGeometry();
-const vertices=[];
-
-for(let i=0;i<500;i++){
-vertices.push(
-(Math.random()-0.5)*20,
-(Math.random()-0.5)*20,
-(Math.random()-0.5)*20
-);
-}
-
-geometry.setAttribute('position',
-new THREE.Float32BufferAttribute(vertices,3));
-
-const material=new THREE.PointsMaterial({
-color:0xc9a55c,
-size:0.05
-});
-
-const points=new THREE.Points(geometry,material);
-scene.add(points);
-
-camera.position.z=5;
-
-function animate(){
-requestAnimationFrame(animate);
-points.rotation.y+=0.0005;
-renderer.render(scene,camera);
-}
-
-animate();
-
-</script>
-
-</body>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>nityawrites.com | Where Stories Find Home</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&amp;family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400&amp;family=Caveat:wght@400;500;600&amp;display=swap" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      --bg-cream: #faf8f3;
+      --bg-light: #f5f0e8;
+      --accent-brown: #8b6f47;
+      --accent-warm: #a88968;
+      --accent-dark-brown: #6b5839;
+      --text-dark: #3d3428;
+      --text-warm: #7d6f66;
+      --white: #ffffff;
+      --shadow: rgba(74, 63, 56, 0.12);
+      --gold: #d4a574;
+    }
+    
+    html, body { height: 100%; overflow-x: hidden; }
+    
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background: linear-gradient(135deg, var(--bg-cream) 0%, var(--bg-light) 100%);
+      color: var(--text-dark);
+    }
+    
+    .main-wrapper {
+      width: 100%;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    
+    .main-wrapper::-webkit-scrollbar { width: 10px; }
+    .main-wrapper::-webkit-scrollbar-track { background: transparent; }
+    .main-wrapper::-webkit-scrollbar-thumb { 
+      background: var(--accent-brown); 
+      border-radius: 5px;
+    }
+    
+    #canvas-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .section {
+      position: relative;
+      z-index: 10;
+      min-height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 2rem;
+    }
+    
+    .hero-section {
+      background: linear-gradient(180deg, rgba(250,248,243,0.98) 0%, rgba(245,240,232,0.95) 100%);
+    }
+    
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 6vw, 4rem);
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      color: var(--accent-brown);
+      text-shadow: 0 2px 10px rgba(139, 111, 71, 0.2);
+      animation: glow 3s ease-in-out infinite alternate;
+    }
+    
+    @keyframes glow {
+      from { text-shadow: 0 2px 5px rgba(139, 111, 71, 0.1); }
+      to { text-shadow: 0 4px 20px rgba(139, 111, 71, 0.3), 0 2px 10px rgba(212, 165, 116, 0.2); }
+    }
+    
+    .tagline {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(1.2rem, 3vw, 2rem);
+      color: var(--text-warm);
+      margin-top: 1rem;
+      opacity: 0;
+      animation: fadeInUp 1s ease-out 0.5s forwards;
+    }
+    
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    .btn-primary {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1rem 3rem;
+      background: transparent;
+      border: 2px solid var(--accent-brown);
+      color: var(--accent-brown);
+      cursor: pointer;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent-brown);
+      transition: left 0.4s ease;
+      z-index: -1;
+    }
+    
+    .btn-primary:hover {
+      color: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(139, 111, 71, 0.3);
+    }
+    
+    .btn-primary:hover::before {
+      left: 0;
+    }
+    
+    .nav-dots {
+      position: fixed;
+      right: 2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 100;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    
+    .nav-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--accent-brown);
+      background: transparent;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .nav-dot.active,
+    .nav-dot:hover {
+      background: var(--accent-brown);
+      box-shadow: 0 0 12px rgba(139, 111, 71, 0.5);
+      transform: scale(1.2);
+    }
+    
+    .book-section {
+      background: linear-gradient(180deg, rgba(250,248,243,0.95) 0%, rgba(245,240,232,0.92) 50%, rgba(250,248,243,0.95) 100%);
+    }
+    
+    .book-card {
+      background: var(--white);
+      border: 1px solid rgba(139, 111, 71, 0.15);
+      padding: 3rem;
+      max-width: 600px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+      box-shadow: 0 15px 40px var(--shadow);
+      border-radius: 8px;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    
+    .book-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      font-weight: 500;
+      color: var(--accent-brown);
+      margin-bottom: 1rem;
+    }
+    
+    .book-description {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--text-warm);
+      margin-bottom: 1.5rem;
+    }
+    
+    .book-price {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      color: var(--accent-brown);
+      margin-bottom: 2rem;
+    }
+    
+    .book-3d {
+      width: 200px;
+      height: 280px;
+      position: relative;
+      transform-style: preserve-3d;
+      transform: rotateY(-20deg);
+      animation: bookRotate 8s ease-in-out infinite;
+      margin: 2rem auto;
+      filter: drop-shadow(0 10px 30px var(--shadow));
+    }
+    
+    @keyframes bookRotate {
+      0%, 100% { transform: rotateY(-20deg) rotateX(5deg); }
+      50% { transform: rotateY(20deg) rotateX(-5deg); }
+    }
+    
+    .book-cover {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, #8b6f47 0%, #a88968 50%, #8b6f47 100%);
+      border-radius: 0 5px 5px 0;
+      box-shadow: 
+        8px 8px 25px rgba(139, 111, 71, 0.3),
+        inset -3px 0 10px rgba(0,0,0,0.15);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+      transform: translateZ(15px);
+    }
+    
+    .book-cover-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--white);
+      text-align: center;
+      font-weight: 600;
+      text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+    
+    .book-spine {
+      position: absolute;
+      width: 30px;
+      height: 100%;
+      background: linear-gradient(90deg, #6b5839 0%, #8b6f47 100%);
+      left: -30px;
+      transform: rotateY(-90deg) translateZ(15px);
+      box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+    }
+    
+    .book-pages {
+      position: absolute;
+      width: 100%;
+      height: 96%;
+      background: linear-gradient(90deg, #faf8f3 0%, #f5f0e8 100%);
+      top: 2%;
+      left: -2px;
+      border-radius: 0 3px 3px 0;
+      transform: translateZ(-5px);
+    }
+    
+    .about-section {
+      background: linear-gradient(180deg, rgba(250,248,243,0.95) 0%, rgba(245,240,232,0.9) 100%);
+    }
+    
+    .story-card {
+      max-width: 700px;
+      padding: 3rem;
+      background: var(--white);
+      border-left: 4px solid var(--accent-brown);
+      backdrop-filter: blur(10px);
+      border-radius: 6px;
+      box-shadow: 0 10px 35px var(--shadow);
+    }
+    
+    .story-title {
+      font-family: 'Caveat', cursive;
+      font-size: clamp(2rem, 5vw, 3rem);
+      color: var(--accent-brown);
+      margin-bottom: 1.5rem;
+    }
+    
+    .story-text {
+      font-size: 1.15rem;
+      line-height: 2;
+      color: var(--text-warm);
+      font-style: italic;
+    }
+    
+    .story-text p {
+      margin-bottom: 1.5rem;
+    }
+    
+    .author-section {
+      background: linear-gradient(135deg, rgba(245,240,232,0.95) 0%, rgba(250,248,243,0.95) 100%);
+    }
+    
+    .author-desk {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      max-width: 700px;
+    }
+    
+    .author-frame {
+      width: 200px;
+      height: 200px;
+      border: 3px solid var(--accent-warm);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: var(--white);
+      box-shadow: 0 10px 35px rgba(139, 111, 71, 0.25);
+      overflow: hidden;
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    .author-avatar {
+      font-size: 4.5rem;
+    }
+    
+    .author-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--accent-brown);
+    }
+    
+    .author-bio {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      color: var(--text-warm);
+      text-align: center;
+    }
+    
+    .desk-props {
+      display: flex;
+      gap: 2rem;
+      margin-top: 1.5rem;
+      font-size: 2.5rem;
+      opacity: 0.8;
+    }
+    
+    .desk-prop {
+      animation: floatSlow 4s ease-in-out infinite;
+    }
+    
+    .desk-prop:nth-child(2) { animation-delay: 1s; }
+    .desk-prop:nth-child(3) { animation-delay: 2s; }
+    
+    @keyframes floatSlow {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(3deg); }
+    }
+    
+    .order-section {
+      background: linear-gradient(180deg, rgba(250,248,243,0.95) 0%, rgba(245,240,232,0.93) 100%);
+    }
+    
+    .order-board {
+      max-width: 800px;
+      width: 100%;
+      background: var(--white);
+      border: 2px solid rgba(139, 111, 71, 0.2);
+      padding: 3rem;
+      position: relative;
+      border-radius: 8px;
+      box-shadow: 0 15px 40px var(--shadow);
+    }
+    
+    .order-board::before {
+      content: '📌';
+      position: absolute;
+      top: -15px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 2rem;
+    }
+    
+    .order-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.5rem);
+      color: var(--accent-brown);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .steps-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    
+    .step-card {
+      background: linear-gradient(135deg, rgba(245,240,232,0.8) 0%, rgba(250,248,243,0.9) 100%);
+      padding: 2rem;
+      border-left: 4px solid var(--accent-brown);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 4px;
+      box-shadow: 0 4px 12px rgba(139, 111, 71, 0.1);
+    }
+    
+    .step-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(139, 111, 71, 0.15);
+    }
+    
+    .step-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--accent-warm);
+      opacity: 0.6;
+      line-height: 1;
+    }
+    
+    .step-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--text-dark);
+      margin: 0.5rem 0;
+    }
+    
+    .step-desc {
+      font-size: 1rem;
+      color: var(--text-warm);
+      line-height: 1.7;
+    }
+    
+    .payment-section {
+      background: linear-gradient(135deg, rgba(245,240,232,0.95) 0%, rgba(250,248,243,0.95) 100%);
+    }
+    
+    .payment-container {
+      max-width: 500px;
+      text-align: center;
+    }
+    
+    .qr-frame {
+      width: 220px;
+      height: 220px;
+      margin: 2rem auto;
+      background: var(--white);
+      border: 4px solid var(--accent-brown);
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 
+        0 0 40px rgba(139, 111, 71, 0.2),
+        0 20px 40px rgba(139, 111, 71, 0.15);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% { box-shadow: 0 0 40px rgba(139, 111, 71, 0.2), 0 20px 40px rgba(139, 111, 71, 0.15); }
+      50% { box-shadow: 0 0 60px rgba(139, 111, 71, 0.35), 0 20px 40px rgba(139, 111, 71, 0.25); }
+    }
+    
+    .qr-placeholder {
+      width: 180px;
+      height: 180px;
+      background: 
+        linear-gradient(90deg, #3d3428 25%, transparent 25%),
+        linear-gradient(90deg, transparent 75%, #3d3428 75%),
+        linear-gradient(0deg, #3d3428 25%, transparent 25%),
+        linear-gradient(0deg, transparent 75%, #3d3428 75%);
+      background-size: 20px 20px;
+      background-position: 0 0, 10px 0, 0 10px, 10px 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .qr-center {
+      background: white;
+      padding: 5px;
+      font-size: 0.7rem;
+      color: #3d3428;
+      font-weight: bold;
+    }
+    
+    .upi-display {
+      background: linear-gradient(135deg, rgba(250,248,243,0.9) 0%, rgba(245,240,232,0.9) 100%);
+      padding: 1.5rem 2rem;
+      border: 2px solid var(--accent-brown);
+      margin: 1.5rem 0;
+      display: inline-block;
+      border-radius: 6px;
+      box-shadow: 0 4px 12px rgba(139, 111, 71, 0.1);
+    }
+    
+    .upi-label {
+      font-size: 0.9rem;
+      color: var(--text-warm);
+      margin-bottom: 0.5rem;
+    }
+    
+    .upi-id {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--accent-brown);
+      font-weight: 600;
+      letter-spacing: 0.05em;
+    }
+    
+    .payment-icons {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      font-size: 2rem;
+    }
+    
+    .payment-icon {
+      animation: bounce 2s ease-in-out infinite;
+    }
+    
+    .payment-icon:nth-child(2) { animation-delay: 0.3s; }
+    .payment-icon:nth-child(3) { animation-delay: 0.6s; }
+    
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    
+    .form-section {
+      background: linear-gradient(180deg, rgba(250,248,243,0.95) 0%, rgba(245,240,232,0.95) 100%);
+    }
+    
+    .form-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--accent-brown);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    
+    .particles {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+      overflow: hidden;
+    }
+    
+    .particle {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      background: var(--accent-brown);
+      border-radius: 50%;
+      opacity: 0.2;
+      animation: particleFloat 15s linear infinite;
+    }
+    
+    @keyframes particleFloat {
+      0% { transform: translateY(100%) translateX(0) rotate(0deg); opacity: 0; }
+      10% { opacity: 0.2; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-100%) translateX(100px) rotate(360deg); opacity: 0; }
+    }
+    
+    .footer {
+      background: var(--white);
+      padding: 3rem 2rem;
+      text-align: center;
+      border-top: 1px solid rgba(139, 111, 71, 0.15);
+    }
+    
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      color: var(--accent-brown);
+      margin-bottom: 1rem;
+    }
+    
+    .footer-text {
+      color: var(--text-warm);
+      font-size: 0.95rem;
+    }
+    
+    .footer-hearts {
+      margin-top: 1rem;
+      font-size: 1.2rem;
+      letter-spacing: 0.5em;
+    }
+    
+    .google-form-wrapper {
+      max-width: 900px;
+      width: 100%;
+      background: var(--white);
+      border-radius: 8px;
+      box-shadow: 0 15px 40px var(--shadow);
+      overflow: hidden;
+    }
+    
+    .google-form-wrapper iframe {
+      display: block;
+      border: none;
+      width: 100%;
+    }
+    
+    @media (max-width: 768px) {
+      .nav-dots { right: 1rem; }
+      .section { padding: 3rem 1.5rem; }
+      .book-card, .order-board, .story-card { padding: 2rem; }
+      .steps-container { grid-template-columns: 1fr; }
+    }
+  </style>
+  <style>body { box-sizing: border-box; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full">
+  <div class="main-wrapper" id="main-wrapper">
+   <div class="particles" id="particles"></div>
+   <div id="canvas-container"></div>
+   <nav class="nav-dots" id="nav-dots"><button class="nav-dot active" data-section="0" title="Home" aria-label="Go to Home section"></button> <button class="nav-dot" data-section="1" title="Featured Book" aria-label="Go to Featured Book section"></button> <button class="nav-dot" data-section="2" title="About" aria-label="Go to About section"></button> <button class="nav-dot" data-section="3" title="Author" aria-label="Go to Author section"></button> <button class="nav-dot" data-section="4" title="How to Order" aria-label="Go to How to Order section"></button> <button class="nav-dot" data-section="5" title="Payment" aria-label="Go to Payment section"></button> <button class="nav-dot" data-section="6" title="Order Form" aria-label="Go to Order Form section"></button>
+   </nav>
+   <main><!-- Hero Section -->
+    <section class="section hero-section" id="section-0">
+     <header>
+      <h1 class="logo" id="logo-text">nityawrites.com</h1>
+      <p class="tagline" id="tagline-text">Where stories find their way home...</p>
+     </header>
+     <div class="book-3d" style="margin: 3rem 0;">
+      <div class="book-spine"></div>
+      <div class="book-pages"></div>
+      <div class="book-cover"><span style="font-size: 2rem; margin-bottom: 0.5rem;">📖</span> <span class="book-cover-title" id="cover-title">A Love Untold</span>
+      </div>
+     </div>
+     <p style="max-width: 600px; text-align: center; color: var(--text-warm); font-size: 1.1rem; margin-bottom: 2rem; line-height: 1.8;">Immerse yourself in a collection of poignant verses and timeless prose that capture the essence of love, loss, and self-discovery.</p><button class="btn-primary" onclick="scrollToSection(1)" style="margin-top: 2rem;"> Discover the Magic </button>
+    </section><!-- Featured Book Section -->
+    <section class="section book-section" id="section-1">
+     <article class="book-card"><span style="font-size: 3rem; display: block; margin-bottom: 1rem;">✨</span>
+      <h2 class="book-title" id="main-book-title">A Love Untold</h2>
+      <p class="book-description">A poetic journey through love, loss, and the beautiful chaos of finding yourself. Every page whispers emotions that words often fail to capture.</p>
+      <div class="book-price" id="book-price-display">
+       ₹299
+      </div><button class="btn-primary" onclick="scrollToSection(4)">Order Now</button>
+     </article>
+    </section><!-- About Section -->
+    <section class="section about-section" id="section-2">
+     <article class="story-card">
+      <h2 class="story-title">📜 The Story Within</h2>
+      <div class="story-text">
+       <p>This is not just a book—it's a mirror reflecting the emotions we often hide. Through verses and prose, it captures the essence of love that remains unspoken, hearts that ache in silence, and souls that heal through words. Journey through pages filled with moonlit confessions, coffee-stained memories, and the gentle ache of loving deeply. For those who love in whispers, dream in poetry, and find comfort in the written word—this book is your companion through every season of the heart.</p>
+      </div>
+     </article>
+    </section><!-- Author Section -->
+    <section class="section author-section" id="section-3">
+     <div class="author-desk">
+      <div class="author-frame"><span class="author-avatar">✍️</span>
+      </div>
+      <h2 class="author-name" id="author-name-display">Nitya Bhambhani</h2>
+      <p style="color: var(--gold); font-size: 0.95rem; letter-spacing: 0.1em; margin-bottom: 1rem;">AUTHOR &amp; POET</p>
+      <p class="author-bio">A dreamer who found solace in words. Nitya writes to heal, to connect, and to remind others that every emotion deserves to be felt and expressed. When not writing, you'll find her sipping chai, lost in old Bollywood songs, or scribbling thoughts in her worn-out diary.</p>
+      <div class="desk-props" aria-hidden="true"><span class="desk-prop">🪔</span> <span class="desk-prop">📓</span> <span class="desk-prop">☕</span>
+      </div>
+     </div>
+    </section><!-- How to Order Section -->
+    <section class="section order-section" id="section-4">
+     <div class="order-board">
+      <h2 class="order-title">📋 How to Order Your Copy</h2>
+      <div class="steps-container">
+       <div class="step-card">
+        <div class="step-number">
+         01
+        </div>
+        <h3 class="step-title">Fill the Order Form</h3>
+        <p class="step-desc">Enter your complete name, address, city, pincode, phone number, email, and book quantity.</p>
+       </div>
+       <div class="step-card">
+        <div class="step-number">
+         02
+        </div>
+        <h3 class="step-title">Make Payment</h3>
+        <p class="step-desc">Pay via UPI using the QR code or UPI ID provided. Take a screenshot of your payment.</p>
+       </div>
+       <div class="step-card">
+        <div class="step-number">
+         03
+        </div>
+        <h3 class="step-title">Receive Confirmation</h3>
+        <p class="step-desc">Once your payment is received, your order is confirmed and the book will be shipped to your doorstep!</p>
+       </div>
+      </div>
+      <div style="text-align: center; margin-top: 2rem;"><button class="btn-primary" onclick="scrollToSection(5)">Proceed to Payment</button>
+      </div>
+     </div>
+    </section><!-- Payment Section -->
+    <section class="section payment-section" id="section-5">
+     <div class="payment-container">
+      <h2 class="book-title">💳 Scan &amp; Pay</h2>
+      <p style="color: var(--text-warm); margin-bottom: 1.5rem; font-size: 1rem;">Choose your preferred payment method</p>
+      <div class="qr-frame" role="img" aria-label="UPI QR Code for payment">
+       <div class="qr-placeholder">
+        <div class="qr-center">
+         SCAN ME
+        </div>
+       </div>
+      </div>
+      <div class="upi-display">
+       <div class="upi-label">
+        UPI ID
+       </div>
+       <div class="upi-id" id="upi-id-display">
+        nityabhambhani17@oksbi
+       </div>
+      </div>
+      <p style="color: var(--text-warm); margin-top: 1.5rem; font-size: 0.95rem; line-height: 1.7;">📱 Supported on: Google Pay • PhonePe • Paytm • WhatsApp Pay<br>
+        💰 Safe &amp; Secure UPI Payment<br>
+        📸 Don't forget to take a screenshot!</p>
+      <div class="payment-icons" aria-hidden="true"><span class="payment-icon">💰</span> <span class="payment-icon">📱</span> <span class="payment-icon">✅</span>
+      </div><button class="btn-primary" onclick="scrollToSection(6)" style="margin-top: 2rem;"> Fill Order Form </button>
+     </div>
+    </section><!-- Order Form Section -->
+    <section class="section form-section" id="section-6">
+     <div class="google-form-wrapper">
+      <h2 class="form-title">📦 Complete Your Order</h2><iframe src="https://docs.google.com/forms/d/e/1FAIpQLSd0X0ZcVXhNZOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOhOg/viewform?embedded=true" height="600" style="border: none;"></iframe>
+     </div>
+    </section><!-- Footer -->
+    <footer class="footer">
+     <div class="footer-logo">
+      nityawrites.com
+     </div>
+     <p class="footer-text">Crafting stories, one heart at a time</p>
+     <div class="footer-hearts">
+      ❤️ 📖 ✨ 📖 ❤️
+     </div>
+     <p style="font-size: 0.85rem; color: var(--text-warm); margin-top: 1rem;">© 2024 Nitya Bhambhani. All rights reserved.</p>
+    </footer>
+   </main>
+  </div>
+  <script>
+    const defaultConfig = {
+      site_tagline: "Where stories find their way home...",
+      book_title: "A Love Untold",
+      book_price: "₹299",
+      author_name: "Nitya Bhambhani",
+      upi_id: "nityabhambhani17@oksbi",
+      background_color: "#faf8f3",
+      accent_color: "#8b6f47",
+      text_color: "#3d3428",
+      secondary_color: "#f5f0e8",
+      tertiary_color: "#7d6f66"
+    };
+    
+    let config = { ...defaultConfig };
+    
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange: async (newConfig) => {
+          config = { ...defaultConfig, ...newConfig };
+          applyConfig();
+        },
+        mapToCapabilities: (cfg) => ({
+          recolorables: [
+            {
+              get: () => cfg.background_color || defaultConfig.background_color,
+              set: (value) => {
+                cfg.background_color = value;
+                window.elementSdk.setConfig({ background_color: value });
+              }
+            },
+            {
+              get: () => cfg.secondary_color || defaultConfig.secondary_color,
+              set: (value) => {
+                cfg.secondary_color = value;
+                window.elementSdk.setConfig({ secondary_color: value });
+              }
+            },
+            {
+              get: () => cfg.text_color || defaultConfig.text_color,
+              set: (value) => {
+                cfg.text_color = value;
+                window.elementSdk.setConfig({ text_color: value });
+              }
+            },
+            {
+              get: () => cfg.accent_color || defaultConfig.accent_color,
+              set: (value) => {
+                cfg.accent_color = value;
+                window.elementSdk.setConfig({ accent_color: value });
+              }
+            },
+            {
+              get: () => cfg.tertiary_color || defaultConfig.tertiary_color,
+              set: (value) => {
+                cfg.tertiary_color = value;
+                window.elementSdk.setConfig({ tertiary_color: value });
+              }
+            }
+          ],
+          borderables: [],
+          fontEditable: undefined,
+          fontSizeable: undefined
+        }),
+        mapToEditPanelValues: (cfg) => new Map([
+          ["site_tagline", cfg.site_tagline || defaultConfig.site_tagline],
+          ["book_title", cfg.book_title || defaultConfig.book_title],
+          ["book_price", cfg.book_price || defaultConfig.book_price],
+          ["author_name", cfg.author_name || defaultConfig.author_name],
+          ["upi_id", cfg.upi_id || defaultConfig.upi_id]
+        ])
+      });
+    }
+    
+    function applyConfig() {
+      const els = {
+        'tagline-text': config.site_tagline,
+        'cover-title': config.book_title,
+        'main-book-title': config.book_title,
+        'book-price-display': config.book_price,
+        'author-name-display': config.author_name,
+        'upi-id-display': config.upi_id
+      };
+      
+      Object.entries(els).forEach(([id, val]) => {
+        const el = document.getElementById(id);
+        if (el && val) el.textContent = val;
+      });
+      
+      const colors = {
+        '--bg-cream': config.background_color,
+        '--accent-brown': config.accent_color,
+        '--text-dark': config.text_color,
+        '--bg-light': config.secondary_color,
+        '--text-warm': config.tertiary_color
+      };
+      
+      Object.entries(colors).forEach(([key, val]) => {
+        if (val) document.documentElement.style.setProperty(key, val);
+      });
+      
+      if (config.background_color) document.body.style.backgroundColor = config.background_color;
+      if (config.text_color) document.body.style.color = config.text_color;
+    }
+    
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+        container.appendChild(particle);
+      }
+    }
+    
+    function scrollToSection(index) {
+      const section = document.getElementById(`section-${index}`);
+      if (section) section.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    const navDots = document.querySelectorAll('.nav-dot');
+    navDots.forEach(dot => {
+      dot.addEventListener('click', () => {
+        const index = parseInt(dot.dataset.section);
+        scrollToSection(index);
+      });
+    });
+    
+    const mainWrapper = document.getElementById('main-wrapper');
+    const sections = document.querySelectorAll('.section');
+    
+    mainWrapper.addEventListener('scroll', () => {
+      let currentSection = 0;
+      const scrollTop = mainWrapper.scrollTop;
+      const windowHeight = mainWrapper.clientHeight;
+      
+      sections.forEach((section, index) => {
+        const sectionTop = section.offsetTop;
+        if (scrollTop >= sectionTop - windowHeight / 2) {
+          currentSection = index;
+        }
+      });
+      
+      navDots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentSection);
+      });
+    });
+    
+    function initThreeJS() {
+      const container = document.getElementById('canvas-container');
+      const scene = new THREE.Scene();
+      const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+      
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setClearColor(0x000000, 0);
+      container.appendChild(renderer.domElement);
+      
+      // Particle system
+      const particleGeometry = new THREE.BufferGeometry();
+      const particleCount = 200;
+      const positions = new Float32Array(particleCount * 3);
+      
+      for (let i = 0; i < particleCount * 3; i += 3) {
+        positions[i] = (Math.random() - 0.5) * 20;
+        positions[i + 1] = (Math.random() - 0.5) * 20;
+        positions[i + 2] = (Math.random() - 0.5) * 20;
+      }
+      
+      particleGeometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+      
+      const particleMaterial = new THREE.PointsMaterial({
+        color: 0x8b6f47,
+        size: 0.08,
+        transparent: true,
+        opacity: 0.6
+      });
+      
+      const particles = new THREE.Points(particleGeometry, particleMaterial);
+      scene.add(particles);
+      
+      // Floating cubes
+      const cubeGeometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+      const cubeMaterial = new THREE.MeshPhongMaterial({ color: 0xa88968, wireframe: true });
+      
+      for (let i = 0; i < 5; i++) {
+        const cube = new THREE.Mesh(cubeGeometry, cubeMaterial);
+        cube.position.set(
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 15
+        );
+        cube.rotation.set(Math.random() * Math.PI, Math.random() * Math.PI, Math.random() * Math.PI);
+        scene.add(cube);
+      }
+      
+      // Floating spheres
+      const sphereGeometry = new THREE.SphereGeometry(0.3, 32, 32);
+      const sphereMaterial = new THREE.MeshPhongMaterial({ color: 0xd4a574, transparent: true, opacity: 0.6 });
+      
+      for (let i = 0; i < 3; i++) {
+        const sphere = new THREE.Mesh(sphereGeometry, sphereMaterial);
+        sphere.position.set(
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 15,
+          (Math.random() - 0.5) * 15
+        );
+        scene.add(sphere);
+      }
+      
+      // Lighting
+      const ambientLight = new THREE.AmbientLight(0x8b6f47, 0.4);
+      scene.add(ambientLight);
+      
+      const pointLight = new THREE.PointLight(0xd4a574, 0.6);
+      pointLight.position.set(10, 10, 10);
+      scene.add(pointLight);
+      
+      camera.position.z = 5;
+      
+      function animate() {
+        requestAnimationFrame(animate);
+        
+        particles.rotation.y += 0.0003;
+        particles.rotation.x += 0.0001;
+        
+        scene.children.forEach(child => {
+          if (child instanceof THREE.Mesh && child !== particles) {
+            child.rotation.x += 0.002;
+            child.rotation.y += 0.003;
+            child.position.y += Math.sin(Date.now() * 0.001) * 0.0005;
+          }
+        });
+        
+        const posArray = particleGeometry.attributes.position.array;
+        for (let i = 1; i < posArray.length; i += 3) {
+          posArray[i] += Math.sin(Date.now() * 0.0008 + i) * 0.0008;
+        }
+        particleGeometry.attributes.position.needsUpdate = true;
+        
+        renderer.render(scene, camera);
+      }
+      
+      animate();
+      
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
+    
+    createParticles();
+    initThreeJS();
+    applyConfig();
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9cdd55d005d5445b',t:'MTc3MTA4MDE3OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
